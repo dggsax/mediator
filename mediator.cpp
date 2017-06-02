@@ -4,7 +4,7 @@
 //Edited for programming sanity
 
 
-#include "Wifi_S08_v3.h"
+#include "mediator.h"
 #include <WString.h>
 #include <Arduino.h>
 
@@ -12,36 +12,23 @@ MEDIATOR * MEDIATOR::_instance;
 
 // Constructors and init method
 MEDIATOR::MEDIATOR() {
-  init(0, false);
+	init(115200);
 }
-MEDIATOR::MEDIATOR(bool verboseSerial) {
-  init(0, verboseSerial);
-}
-MEDIATOR::MEDIATOR(int mode) {
-  init(mode, false);
-}
-MEDIATOR::MEDIATOR(int mode, bool verboseSerial) {
-  init(mode, verboseSerial);
+MEDIATOR::MEDIATOR(int baud) {
+	init(baud);
 }
 
-
-
-
-
-
-
-void MEDIATOR::init(int mode, bool verboseSerial) {
-  Serial.begin(115200);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
-
-  
+// Automatically runs once the library is initiatied. Sets up the serial and get's things going
+void MEDIATOR::init(int baud) {
+	_instance = this;
+	Serial.begin(baud);
+	while (!Serial){
+		;
+	}
 }
 
-void MEDIATOR::flag() {
-}
 
 void MEDIATOR::pack() {
-	
+	;
+	// char buf[60];  // Build the buffer for us to put information to send to the webpage/{whatever we'll call it}.
 }
