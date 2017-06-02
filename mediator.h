@@ -5,23 +5,28 @@
 
 #ifndef mediator
 #define mediator
-#endif
+// #endif                                                               
 
 // include types & constants of Wiring core API
 #include "WConstants.h"
 
 // library interface description
-class Mediator
-{
+class MEDIATOR {
   // user-accessible "public" interface
   public:
-    Test(int);
-    void flag(void);
-    void pack(void);
+  	MEDIATOR();
+    MEDIATOR(int baud);
+    // Test(int);
+    // void flag(void);
+    // void pack(void);
+    void pack();
 
   // library-accessible "private" interface
   private:
-    void init(void);
+  	// Make MEDIATOR a static member of the class (apparently necessary)
+  	static MEDIATOR * _instance;
+
+    void init(int baud);
 };
 
 #endif
